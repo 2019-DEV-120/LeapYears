@@ -25,4 +25,10 @@ class YearTests {
         assertTrue(Year(2016).isLeap)
     }
 
+    @Test
+    fun `All years not divisible by 4 are NOT leap years`() {
+        assertFalse(Year(2017).isLeap)
+        assertFalse(Year(2018).isLeap)
+        assertFalse(Year(2019).isLeap)
+    }
 }

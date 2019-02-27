@@ -7,6 +7,7 @@ val Year.isLeap: Boolean get() =
     when {
         year.isDivisibleBy(400) -> true
         year.isDivisibleBy(100) -> false
+        year.isDivisibleBy(4) -> true
         else -> false
     }
 

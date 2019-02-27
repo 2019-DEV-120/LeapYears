@@ -17,4 +17,12 @@ class YearTests {
         assertFalse(Year(1800).isLeap)
         assertFalse(Year(1900).isLeap)
     }
+
+    @Test
+    fun `All years divisible by 4 but not by 100 ARE leap years`() {
+        assertTrue(Year(2008).isLeap)
+        assertTrue(Year(2012).isLeap)
+        assertTrue(Year(2016).isLeap)
+    }
+
 }

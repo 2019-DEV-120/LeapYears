@@ -14,11 +14,23 @@ class MainActivityViewModelTests {
     fun `checkYear updates isLeapYear`() {
         // given
         val viewModel = MainActivityViewModel()
-        val observer = mock<Observer<Boolean>>()
+        val observer = mock<Observer<Boolean?>>()
         viewModel.isLeapYear.observeForever(observer)
         // when
         viewModel.checkYear("2000")
         // then
         verify(observer).onChanged(any())
+    }
+
+    @Test
+    fun `checkYear exception update isLeapYear`() {
+        // given
+        val viewModel = MainActivityViewModel()
+        val observer = mock<Observer<Boolean?>>()
+        viewModel.isLeapYear.observeForever(observer)
+        // when
+        viewModel.checkYear("abcd")
+        // then
+        verify(observer).onChanged(null)
     }
 }

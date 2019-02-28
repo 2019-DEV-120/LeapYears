@@ -12,6 +12,7 @@ import androidx.test.rule.ActivityTestRule
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
+import org.hamcrest.Matchers.not
 import org.hamcrest.TypeSafeMatcher
 import org.junit.Rule
 import org.junit.Test
@@ -26,7 +27,7 @@ class MainActivityTest {
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun testIsALeapYearDisplayed() {
+    fun testIsALeapYear_Displayed() {
         val appCompatEditText = onView(
             allOf(
                 withId(R.id.year),
@@ -74,7 +75,7 @@ class MainActivityTest {
     }
 
     @Test
-    fun testIsNotALeapYearDisplayed() {
+    fun testIsNotALeapYear_Displayed() {
         val appCompatEditText = onView(
             allOf(
                 withId(R.id.year),
@@ -119,6 +120,53 @@ class MainActivityTest {
             )
         )
         textView.check(matches(withText("2001 is not a leap year")))
+    }
+
+    @Test
+    fun testError_IsALeapYear_NotDisplayed() {
+        val appCompatEditText = onView(
+            allOf(
+                withId(R.id.year),
+                childAtPosition(
+                    childAtPosition(
+                        withId(android.R.id.content),
+                        0
+                    ),
+                    1
+                ),
+                isDisplayed()
+            )
+        )
+        appCompatEditText.perform(replaceText("abcd"), closeSoftKeyboard())
+
+        val appCompatButton = onView(
+            allOf(
+                withId(R.id.check_year),
+                childAtPosition(
+                    childAtPosition(
+                        withId(android.R.id.content),
+                        0
+                    ),
+                    2
+                ),
+                isDisplayed()
+            )
+        )
+        appCompatButton.perform(click())
+
+        val textView = onView(
+            allOf(
+                withId(R.id.is_leap_year),
+                childAtPosition(
+                    childAtPosition(
+                        withId(android.R.id.content),
+                        0
+                    ),
+                    3
+                )
+            )
+        )
+        textView.check(matches(not(isDisplayed())))
     }
 
     private fun childAtPosition(

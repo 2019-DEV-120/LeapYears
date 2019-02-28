@@ -47,6 +47,7 @@
             android:onClick='@{() -> viewModel.checkYear(year.getText().toString())}'/>
 
         <TextView
+            android:id="@+id/is_leap_year"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"

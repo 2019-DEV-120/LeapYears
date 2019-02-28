@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Leap Years</string>
+
+    <string name="is_leap">%s is a leap year</string>
+    <string name="is_not_leap">%s is not a leap year</string>
+    <string name="enter_a_year">Enter a year [ ex: 2019 ]</string>
+    <string name="check_leap_year">Check Leap Year</string>
+
 </resources>
